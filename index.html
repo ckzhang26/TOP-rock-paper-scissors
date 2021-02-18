@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+
+    <script>
+
+        function computerPlay() {
+        // generate random number and use that number to determine computer's play
+        // three possible plays so random number can be compared to three things
+
+            const random = Math.random();
+            if (random < .33) {
+                return 'Rock';
+            } else if (random < .66) {
+                return 'Paper';
+            } else {
+                return 'Scissors';
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+        // get player's play and computer's play 
+        // determine outcome according to rules by comparing player and computer's plays
+        // return a string describing the outcome
+
+            if (playerSelection === computerSelection) {
+                return `Tie! ${computerSelection} equals ${playerSelection}`;
+            } else if (playerSelection === 'Rock' && computerSelection === 'Paper' ||
+                        playerSelection === 'Paper' && computerSelection === 'Scissors' ||
+                        playerSelection === 'Scissors' && computerSelection === 'Rock') {
+                            return `You Lose! ${computerSelection} beats ${playerSelection}`;
+            } else {
+                return `You win! ${playerSelection} beats ${computerSelection}`;
+            }
+        }
+
+        function game() {
+            // play Rock Paper Scissors 5 times:
+            // use computerPlay function to get a computer play
+            // ask user to input play
+            // make sure user has input a valid play
+            // format user's play to be consistent (computer's play will always be consistent)
+            // use computer play and user play in playRound function to get a result
+            // display result in console
+            // repeat until game has been played 5 times 
+
+            for (let i = 0; i < 5; i++) {
+                const computer = computerPlay();
+                let user;
+                while (!user || !validatePlay(user)) {
+                    user = formatInput(prompt('Enter Rock, Paper, or Scissors'));
+                }
+                const result = playRound(user, computer);
+                console.log(result);
+            }
+        }
+
+        function formatInput(word) {
+            if (!word) return;
+            return word[0].toUpperCase() + word.slice(1).toLowerCase();
+        }
+
+        function validatePlay(play) { 
+            const possiblePlays = ['Rock', 'Paper', 'Scissors'];
+            return possiblePlays.includes(play);
+        }
+
+    </script>
+
+</body>
+</html>
