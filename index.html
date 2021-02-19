@@ -4,63 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/TOP-rock-paper-scissors/css/style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
 
-    <script>
+    <main>
 
-        function computerPlay() {
-            const random = Math.random();
-            if (random < .33) {
-                return 'Rock';
-            } else if (random < .66) {
-                return 'Paper';
-            } else {
-                return 'Scissors';
-            }
-        }
+        <h1>Play Rock Paper Scissors!</h1>
+        <span>First to Five</span>
+        <button>Rock</button>
+        <button>Paper</button>
+        <button>Scissors</button>
+    
+        <div id="results">
+            <h2 id="user-score">Your Score: 0</h2>
+            <h2 id="computer-score">Computer Score: 0</h2>
+            <h2 id="winner"></h2>
+            <div id="display"></div>
+        </div>
 
-        function playRound(playerSelection, computerSelection) {
-            if (playerSelection === computerSelection) {
-                return `Tie! ${computerSelection} equals ${playerSelection}`;
-            } else if (playerSelection === 'Rock' && computerSelection === 'Paper' ||
-                        playerSelection === 'Paper' && computerSelection === 'Scissors' ||
-                        playerSelection === 'Scissors' && computerSelection === 'Rock') {
-                            return `You Lose! ${computerSelection} beats ${playerSelection}`;
-            } else {
-                return `You win! ${playerSelection} beats ${computerSelection}`;
-            }
-        }
+    </main>
 
-        function game() {
-            for (let i = 0; i < 5; i++) {
-                const computer = computerPlay();
-                let user;
-                
-                // loop runs if user input is empty or not a valid play
-                // will always run once because user is initialized as undefined
-                while (!user || !validatePlay(user)) {
-                    user = formatInput(prompt('Enter Rock, Paper, or Scissors'));
-                }
 
-                const result = playRound(user, computer);
-                console.log(result);
-            }
-        }
 
-        function formatInput(word) {
-            // if word is empty immediately return because string methods won't work
-            if (!word) return;
-            return word[0].toUpperCase() + word.slice(1).toLowerCase();
-        }
-
-        function validatePlay(play) { 
-            const possiblePlays = ['Rock', 'Paper', 'Scissors'];
-            return possiblePlays.includes(play);
-        }
-
-    </script>
-
+    <script src="/TOP-rock-paper-scissors/js/main.js"></script>
 </body>
 </html>
